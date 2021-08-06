@@ -1,6 +1,8 @@
-"""Main module."""
 import pandas as pd
-"""
+
+
+def catbind(a, b):
+    """
     Concatenates two pandas categoricals.
 
     Parameters
@@ -24,11 +26,8 @@ import pandas as pd
     >>> pypkgs.catbind(a, b)
     [character, hits, your, eyeballs, but, integer, where it, counts]
     Categories (8, object): [but, character, counts,
-    eyeball
+    eyeballs, hits, integer, where it, your]
     """
-
-def catbind(a, b):
     concatenated = pd.concat([pd.Series(a.astype("str")),
-    pd.Series(b.astype("str"))])
-
-    return pd.Categorial(concatenated)
+                              pd.Series(b.astype("str"))])
+    return pd.Categorical(concatenated)

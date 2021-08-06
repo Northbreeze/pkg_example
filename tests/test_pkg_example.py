@@ -4,18 +4,14 @@
 
 
 import unittest
-
+import pandas as pd
 from pkg_example import pkg_example
 
 
-class TestPkg_example(unittest.TestCase):
-    """Tests for `pkg_example` package."""
-
-    def setUp(self):
-        """Set up test fixtures, if any."""
-
-    def tearDown(self):
-        """Tear down test fixtures, if any."""
-
-    def test_000_something(self):
-        """Test something."""
+def test_catbind():
+    a = pd.Categorical(["character", "hits", "your", "eyeballs"])
+    b = pd.Categorical(["but", "integer", "where it", "counts"])
+    assert ((pkg_example.catbind(a, b)).codes ==
+            [1, 4, 7, 3, 0, 5, 6, 2]).all()
+    assert ((pkg_example.catbind(a, b)).categories == ["but", "character",
+                                                       "counts", "eyeballs", "hits", "integer", "where it", "your"]).all()
